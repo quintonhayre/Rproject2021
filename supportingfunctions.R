@@ -1,4 +1,4 @@
-setwd("/Users/Quintonhayre/Desktop/R_Biocomp/Rproject2021/") #Will change based on user
+#setwd("/Users/Quintonhayre/Desktop/R_Biocomp/Rproject2021/") #Will change based on user
 #Quinton Hayre 
 
 fileconvertcsv = function(directory){
@@ -11,9 +11,9 @@ fileconvertcsv = function(directory){
   }
 }
 #countryY
-fileconvertcsv("/Users/Quintonhayre/Desktop/R_Biocomp/Rproject2021/countryY/")
+#fileconvertcsv("/Users/Quintonhayre/Desktop/R_Biocomp/Rproject2021/countryY/")
 #countryX
-fileconvertcsv("/Users/Quintonhayre/Desktop/R_Biocomp/Rproject2021/countryY/")
+#fileconvertcsv("/Users/Quintonhayre/Desktop/R_Biocomp/Rproject2021/countryY/")
 
 allonecsv = function(directory, countryname){
   library(readr)
@@ -50,9 +50,9 @@ allonecsv = function(directory, countryname){
   write.csv(dataframe, file = paste0(countryname, "all.csv"), row.names = F)
 }
 #Ydirectory
-allonecsv("/Users/Quintonhayre/Desktop/R_Biocomp/Rproject2021/countryY/", "countryY")
+#allonecsv("/Users/Quintonhayre/Desktop/R_Biocomp/Rproject2021/countryY/", "countryY")
 #Xdirectory
-allonecsv("/Users/Quintonhayre/Desktop/R_Biocomp/Rproject2021/countryX/", "countryX")
+#allonecsv("/Users/Quintonhayre/Desktop/R_Biocomp/Rproject2021/countryX/", "countryX")
 
 
 
@@ -81,6 +81,6 @@ sumdir = function(directory, countryname){
 }
 
 #Ydirectory
-sumdir("/Users/Quintonhayre/Desktop/R_Biocomp/Rproject2021/countryY/", "countryY")
+#sumdir("/Users/Quintonhayre/Desktop/R_Biocomp/Rproject2021/countryY/", "countryY")
 #Xdirectory
-sumdir("/Users/Quintonhayre/Desktop/R_Biocomp/Rproject2021/countryX/", "countryX")
+#sumdir("/Users/Quintonhayre/Desktop/R_Biocomp/Rproject2021/countryX/", "countryX")
