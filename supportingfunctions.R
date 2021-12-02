@@ -1,26 +1,32 @@
 #setwd("/Users/Quintonhayre/Desktop/R_Biocomp/Rproject2021/") #Will change based on user
 #Quinton Hayre 
 
+
 fileconvertcsv = function(directory){
   setwd(directory)
   filelist = list.files(pattern = ".txt")
-  for (i in 1: length(filelist)){
-    output = paste0(gsub("\\.txt$", "", filelist[i]), ".csv")
-    data = read.table(filelist[i], sep = " ", header = TRUE)
-    write.table(data, file=output, sep=",", col.names=TRUE, row.names=FALSE)
+  if (length(filelist) > 0){
+    for (i in 1: length(filelist)){
+      output = paste0(gsub("\\.txt$", "", filelist[i]), ".csv")
+      data = read.table(filelist[i], sep = " ", header = TRUE)
+      write.table(data, file=output, sep=",", col.names=TRUE, row.names=FALSE)
+    }
+  }else{
+    print(paste0("Your directory ", directory, " does not have any .txt files to convert"))
   }
 }
-#countryY
-#fileconvertcsv("/Users/Quintonhayre/Desktop/R_Biocomp/Rproject2021/countryY/")
-#countryX
-#fileconvertcsv("/Users/Quintonhayre/Desktop/R_Biocomp/Rproject2021/countryY/")
+
+#Examples for above function: 
+  #countryY
+    #fileconvertcsv("/Users/Quintonhayre/Desktop/R_Biocomp/Rproject2021/countryY/")
+  #countryX
+    #fileconvertcsv("/Users/Quintonhayre/Desktop/R_Biocomp/Rproject2021/countryX/")
 
 allonecsv = function(directory, countryname){
   library(readr)
   setwd(directory)
   filelist = list.files(pattern = ".csv")
   filelist = filelist[grepl("screen", filelist)] #incase rerunning with allcsv included so does get added 
-  #dataframe = filelist %>% lapply(read_csv) %>% bind_rows
   dataframe = data.frame(matrix(ncol = 12, nrow = 0))
   ls = list()
   yy = as.character(readline(prompt = "Would you like to be warned about NAs (yes or no): "))
@@ -49,17 +55,18 @@ allonecsv = function(directory, countryname){
   }
   write.csv(dataframe, file = paste0(countryname, "all.csv"), row.names = F)
 }
-#Ydirectory
-#allonecsv("/Users/Quintonhayre/Desktop/R_Biocomp/Rproject2021/countryY/", "countryY")
-#Xdirectory
-#allonecsv("/Users/Quintonhayre/Desktop/R_Biocomp/Rproject2021/countryX/", "countryX")
+#Examples for above function:
+  #Ydirectory
+    #allonecsv("/Users/Quintonhayre/Desktop/R_Biocomp/Rproject2021/countryY/", "countryY")
+  #Xdirectory
+    #allonecsv("/Users/Quintonhayre/Desktop/R_Biocomp/Rproject2021/countryX/", "countryX")
 
 
 
 sumdir = function(directory, countryname){
   library(ggplot2)
   setwd(directory)
-  data = read.csv(file = paste0(countryname, "all.csv"), header = TRUE)
+  data = read.csv(file = paste0(countryname, "all.csv"), header = TRUE) #makes it adaptable
   #age distribution 
   x = ggplot(data, aes(x = age)) + xlim(0,100) + geom_histogram(binwidth = 10)  + 
     xlab("Age") + labs(title = paste0("Age Distribution of ", countryname), subtitle = "Domain limited to 100 due to strong right skew") + 
@@ -80,7 +87,12 @@ sumdir = function(directory, countryname){
   return(fulltable)
 }
 
-#Ydirectory
-#sumdir("/Users/Quintonhayre/Desktop/R_Biocomp/Rproject2021/countryY/", "countryY")
-#Xdirectory
-#sumdir("/Users/Quintonhayre/Desktop/R_Biocomp/Rproject2021/countryX/", "countryX")
+##Examples for above function:
+  #Ydirectory
+    #sumdir("/Users/Quintonhayre/Desktop/R_Biocomp/Rproject2021/countryY/", "countryY")
+  #Xdirectory
+  #sumdir("/Users/Quintonhayre/Desktop/R_Biocomp/Rproject2021/countryX/", "countryX")
+
+
+
+
